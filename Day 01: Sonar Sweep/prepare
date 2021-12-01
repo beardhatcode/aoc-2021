@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [ "$1" = "1" ]; then
-rustc -o ../run ./sonar_1.rs
-else
-rustc -o ../run ./sonar_1.rs
-fi
