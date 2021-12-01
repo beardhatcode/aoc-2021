@@ -2,14 +2,20 @@ use std::io::{stdin, BufRead};
 
 fn main() {
     let s = stdin();
-    let lines = s.lock().lines();
-    let mut b = lines.map(|l| {
-        l.ok()
-            .and_then(|v| (v.parse::<u32>().ok()))
-            .expect("Could not line")
-    });
-    let first = b.next().expect("Need at least one value");
+    let mut lines = s.lock().lines();
 
-    let (_, inc) = b.fold((first, 0), |(prev, inc), x| (x, ((x > prev) as u32) + inc));
-    println!("{:?}", inc);
+    let mut cnt : u32 = 0;
+
+    let mut prev : Option<u32> = None;
+    while let Some(Ok(line)) = lines.next() {
+        let v : Option<u32> = line.parse().ok();
+
+        if let (Some(a), Some(b)) = (v,prev) {
+            cnt += (a > b) as u32;
+        }
+
+        prev = v;
+    }
+
+    println!("{:?}", cnt);
 }
