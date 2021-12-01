@@ -1,8 +1,18 @@
-use std::io::{stdin, BufRead};
+use std::env;
+use std::io::{BufRead, BufReader};
+use std::fs::File;
 
-fn main() {
-    let s = stdin();
-    let mut lines = s.lock().lines();
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+
+    let args: Vec<String> = env::args().collect();
+
+    let file : Box<dyn std::io::Read> = match &args[..] {
+        [_, filename] => Box::new(File::open(filename)?),
+        _ => Box::new(std::io::stdin()),
+    };
+
+    let reader = BufReader::new(file);
+    let mut lines = reader.lines();
 
     let mut cnt : u32 = 0;
 
@@ -18,4 +28,5 @@ fn main() {
     }
 
     println!("{:?}", cnt);
+    Ok(())
 }
