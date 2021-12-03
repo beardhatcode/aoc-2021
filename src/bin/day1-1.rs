@@ -1,17 +1,11 @@
-use std::env;
 use std::io::{BufRead, BufReader};
-use std::fs::File;
+
+#[path = "../input_reader.rs"]
+mod input_reader;
+
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-
-    let args: Vec<String> = env::args().collect();
-
-    let file : Box<dyn std::io::Read> = match &args[..] {
-        [_, filename] => Box::new(File::open(filename)?),
-        _ => Box::new(std::io::stdin()),
-    };
-
-    let reader = BufReader::new(file);
+    let reader : BufReader<Box<dyn std::io::Read>>= input_reader::get_lines()?;
     let mut lines = reader.lines();
 
     let mut cnt : u32 = 0;
