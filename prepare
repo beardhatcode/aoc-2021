@@ -5,12 +5,7 @@ part="$2"
 curDir="$(dirname $0)"
 curDir="$(realpath $curDir)"
 
-cd $curDir
-cd "$(printf 'Day %02d' "$day").*"
-
-if [ -f "prepare" ]
-    ./prepare $2
-else
-   rustc -o ../run *_part"$part".rs
-fi
+cargo build --release
+file="$(printf '%s/target/release/day%02d-%d' "$curDir" "$day" "$part")"
+cp $file run
 
