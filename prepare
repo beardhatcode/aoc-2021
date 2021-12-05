@@ -5,7 +5,8 @@ part="$2"
 curDir="$(dirname $0)"
 curDir="$(realpath $curDir)"
 
+cd "$curDir"
 cargo build --release
 file="$(printf '%s/target/release/day%02d-%d' "$curDir" "$day" "$part")"
-cp $file run
+cp "$file" run
 

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+curDir="$(dirname $0)"
+curDir="$(realpath $curDir)"
+cd "$curDir"
+cargo clean
+rm -f run
