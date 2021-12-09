@@ -100,15 +100,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let acf = acf.expect("Did not find 7");
         let cde = cde;
         let adg = adg;
-        let bd = bcdf & (!cf);
+        //let bd = bcdf & (!cf);
         let a = acf & (!cf);
         let c = cf & cde;
-        let f = acf ^ (c | a);
+        //let f = acf ^ (c | a);
         let eg = abcdefg ^ (bcdf | acf);
         let e = eg & cde;
         let g = eg & (!e);
         let d = adg & (!g) & (!a);
-        let b = bd & (!d);
+        //let b = bd & (!d);
         //println!("  ┌   {:5<}   ┐  ", a);
         //println!("{:5<}       {:5<}", b, c);
         //println!("  ├   {:5<}   ┤  ", d);
@@ -127,7 +127,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     if (segment & d) == 0 {
                         0
                     } else {
-                        if (segment & c == 0) {
+                        if segment & c == 0 {
                             6
                         } else {
                             9
@@ -135,10 +135,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     }
                 }
                 5 => {
-                    if (segment & c == 0) {
+                    if segment & c == 0 {
                         5
                     } else {
-                        if (segment & e == 0) {
+                        if segment & e == 0 {
                             3
                         } else {
                             2
