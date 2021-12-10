@@ -15,12 +15,12 @@ pkgs.mkShell {
         echo -e "\n\n\n\n\n\n\n\n"
         export   RUST_BACKTRACE=full;
         cargo build
-        ./target/debug/day0$1-$2 $3
+        ./target/debug/day$(printf "%02d" $1)-$2 $3
       '')
     (pkgs.writeShellScriptBin
       "compile-run-watch"
       ''
-        echo "src/bin/day0$1-$2.rs" | entr  compile-run $1 $2 $3
+        echo "src/bin/day$(printf "%02d" $1)-$2.rs" | entr  compile-run $1 $2 $3
       '')
   ];
 
