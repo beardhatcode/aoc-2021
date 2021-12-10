@@ -7,6 +7,6 @@ curDir="$(realpath $curDir)"
 
 cd "$curDir"
 cargo build --release
-file="$(printf '%s/target/release/day%02d-%d' "$curDir" "$day" "$part")"
+file="$(printf '%s/target/release/day%02d-%d' "$curDir" "${day##0}" "$part")"
 cp "$file" run
 
