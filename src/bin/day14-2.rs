@@ -45,7 +45,7 @@ fn inc_with<K: Hash + Eq>(counts: &mut HashMap<K, u64>, key: K, v: u64) {
 }
 
 /**
- * Count the number of occurences of each char in the iteratable
+ * Count the number of occurences of each pair of chars in the iteratable
  **/
 // TODO: use IntoIter instread of Deref of [T] to get iter
 fn count_pairs(pattern: &dyn Deref<Target = [char]>) -> HashMap<[char; 2], u64> {
